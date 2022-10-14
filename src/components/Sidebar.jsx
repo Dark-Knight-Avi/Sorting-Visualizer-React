@@ -2,44 +2,87 @@
 
 import {
     Box,
-    Button, Flex, FormControl, FormLabel, Select, Slider, SliderFilledTrack, SliderThumb,
-    SliderTrack
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-
-function Sidebar({ gernerateArr, sort }) {
-    const [formState, setFormState] = useState({
-        size: 10,
-        algorithm: "linear",
-    })
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    Select,
+    Slider,
+    SliderFilledTrack,
+    SliderThumb,
+    SliderTrack,
+  } from "@chakra-ui/react";
+  import React, { useState } from "react";
+  import './css/Sidebar.css';
+  const Sidebar = ({ generateArr, sort, generating, sorting }) => {
+      const [formState, setFormState] = useState({
+          size: 10,
+          algorithm: "selectionSort",
+        });
+    let algo = formState.algorithm;
+    // const handleClick = () => {}
+    // console.log(formState, generating, sorting);
     return (
-        <>
-            <Box minW="xs" bg="gray.100" p={"4"} borderRadius="lg" overflow="hidden">
-                <FormControl>
-                    <FormLabel htmlFor="size">{`ArraySize(${formState.size})`}</FormLabel>
-                    <Slider onChangeEnd={(v) => setFormState({ ...formState, size: v })} aria-label={"10"} min={10} max={200} defaultValue={10}>
-                        <SliderTrack>
-                            <SliderFilledTrack />
-                        </SliderTrack>
-                        <SliderThumb />
-                    </Slider>
-                </FormControl>
-                <FormControl>
-                    <FormLabel htmlFor="algorithm">Algorithm</FormLabel>
-                    <Select id="algorithm" value={formState.algorithm} onChange={(v) => { setFormState({ ...formState, algorithm: v }) }}>
-                        <option value="simple">Simple</option>
-                        <option value="selection">Selection</option>
-                        <option value="insert">insertion</option>
-                        <option value="bubble">Bubble</option>
-                    </Select>
-                </FormControl>
-                <Flex gap={"3"} mt={"5"} direction="row">
-                    <Button onClick={() => {gernerateArr(formState)}} colorScheme="purple">Generate Array</Button>
-                    <Button onClick = {sort} colorScheme="purple" variant="outline">Sort</Button>
-                </Flex>
-            </Box>
-        </>
-    )
-}
-
-export default Sidebar
+      <Box minW="xs" bg="black" textColor={"white"} border={"2px solid white"} p={"4"} borderRadius="lg" overflow="hidden">
+        {/* <form> */}
+        <FormControl>
+          <FormLabel htmlFor="size">{`Array Size (${formState.size})`}</FormLabel>
+          <Slider
+            onChangeEnd={(v) => setFormState({ ...formState, size: v })}
+            aria-label={"10"}
+            min={10}
+            max={200}
+            defaultValue={10}
+          >
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+            <SliderThumb />
+          </Slider>
+        </FormControl>
+        <FormControl>
+          <FormLabel htmlFor="algorithm">Algorithm</FormLabel>
+          <Select
+            onChange={(v) => setFormState({ ...formState, algorithm: v })}
+            bg={"black"}
+            border={"2px solid white"}
+            id="algorithm"
+            variant={"outline"}
+          >
+            <option value="selectionSort">Selection Sort</option>
+            <option value="bubbleSort">Bubble Sort</option>
+            <option value="insertionSort">Insertion Sort</option>
+            <option value="QuickSort">Quick Sort</option>
+          </Select>
+        </FormControl>
+        <Flex gap={"3"} mt={"5"} direction="row">
+          <Button
+            disabled={sorting}
+            isLoading={generating}
+            onClick={() => {
+              generateArr(formState);
+            }}
+            loadingText="Generating"
+            colorScheme="black"
+            border={"2px solid white"}
+          >
+            Generate Array
+          </Button>
+  
+          <Button
+            disabled={generating}
+            isLoading={sorting}
+            loadingText="Sorting"
+            onClick={sort}
+            colorScheme="black"
+            border={"2px solid white"}
+            variant="outline"
+          >
+            Sort
+          </Button>
+        </Flex>
+      </Box>
+    );
+  };
+  
+  export default Sidebar;

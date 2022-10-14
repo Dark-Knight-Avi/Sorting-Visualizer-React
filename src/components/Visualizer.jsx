@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react";
 function Visualizer({ data }) {
     return (
         <>
-            <Box rounded={"lg"} display="grid" gridAutoFlow={"column"} gridAutoColumns={"auto"} bg="grey.100" minH={"full"} overflow={"auto"} flex="1">
+            <Box textColor={"white"} rounded={"lg"} display="grid" gridAutoFlow={"column"} gridAutoColumns={"auto"} bg="grey.100" minH={"full"} overflow={"auto"} flex="1">
                 {data.map((d) => {
                     return (
                         <Box
@@ -14,13 +14,14 @@ function Visualizer({ data }) {
                             justifyContent="flex-end"
                             textAlign="center"
                             flexDirection="column"
+                            key={d}
                         >
                             <p>{d}</p>
                             <Box
                                 roundedTop={"sm"}
                                 border={"1px"}
-                                borderColor={"purple.200"}
-                                bg={"purple.300"}
+                                borderColor={"white"}
+                                bg={"blackAlpha.400"}
                                 style={{ height: `${d}px` }}
                             ></Box>
                         </Box>
