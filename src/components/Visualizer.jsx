@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react";
 function Visualizer({ data }) {
     return (
         <>
-            <Box textColor={"white"} rounded={"lg"} display="grid" gridAutoFlow={"column"} gridAutoColumns={"auto"} bg="grey.100" minH={"full"} overflow={"auto"} flex="1">
+            <Box textColor={"white"} display="grid" gridAutoFlow={"column"} gridAutoColumns={"auto"} bg="grey.100" minH={"full"} overflow={"auto"} flex="1">
                 {data.map((d) => {
                     return (
                         <Box

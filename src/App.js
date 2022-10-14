@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Center, Flex } from "@chakra-ui/react";
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import Visualizer from "./components/Visualizer";
@@ -80,16 +80,27 @@ function App() {
     },
   }
   return (
-    <Box background={"black"} height={"100vh"} p={"4"}>
-      <Flex gap={"4"}>
+    <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"space-around"} background={"black"} height={"100vh"} p={"4"}>
+      <Flex gap={"4"} width={"100vw"}>
         <Sidebar
           generateArr={generateArr}
           generating={generating}
           sorting={sorting}
-          sort={sortDict.bubbleSort} 
+          sort={sortDict.selectionSort}
+          value={"Selection Sort"}
         />
         <Visualizer data={arr} />
       </Flex>
+      {/* <Flex gap={"4"} width={"100vw"}>
+        <Sidebar
+          generateArr={generateArr}
+          generating={generating}
+          sorting={sorting}
+          sort={sortDict.bubbleSort}
+          value={"Bubble Sort"}
+        />
+        <Visualizer data={arr} />
+      </Flex> */}
     </Box>
   );
 }
